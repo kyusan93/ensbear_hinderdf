@@ -1,20 +1,5 @@
-import subprocess, sys
-import random
-import string
-import time
+import subprocess, sys, random, string, time, re, os
 from bs4 import BeautifulSoup
-import re
-import win32com.shell.shell as shell
-
-import win32api
-import win32con
-import win32event
-import win32process
-from win32com.shell.shell import ShellExecuteEx
-from win32com.shell import shellcon
-
-import os
-
 from win32com import adsi
 from win32security import LogonUser
 from win32con import LOGON32_LOGON_INTERACTIVE, LOGON32_PROVIDER_DEFAULT
@@ -24,7 +9,6 @@ def set_password(username, password):
     ads_obj = adsi.ADsGetObject("WinNT://localhost/%s,user" % username)
     ads_obj.Getinfo()
     ads_obj.SetPassword(password)
-
 
 def verify_success(username, password):
     try:
@@ -53,7 +37,6 @@ p = "P@ssw0rd"
 #p = ''.join(random.choice(string.printable) for i in range(16))
 set_password(u, p)
 if verify_success(u, p):
-
     # Screenlock activated
     cmd = "rundll32.exe user32.dll, LockWorkStation"
     #subprocess.call(cmd)
