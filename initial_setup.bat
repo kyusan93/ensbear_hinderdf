@@ -63,6 +63,7 @@ python -m pip install win32_setctime
 python -m pip install bs4
 python -m pip install google
 python -m pip install selenium
+python -m pip install lxml
  
 REM Install chromedriver:
 curl https://chromedriver.storage.googleapis.com/106.0.5249.61/chromedriver_win32.zip -o chromedriver.zip
