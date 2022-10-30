@@ -70,7 +70,7 @@ tar -xf chromedriver.zip
 
 REM Setup EventLogEdit:
 curl -L https://github.com/3gstudent/Eventlogedit-evtx--Evolution/releases/download/v1.1.0/Eventlogedit-evtx--Evolution-master-v1.1.zip -o Eventlogedit-evtx.zip
-tar -xf Eventlogedit.evtx.zip
+tar -xf Eventlogedit-evtx.zip
 ren Eventlogedit-evtx--Evolution-master-v1.1 Eventlogedit-evtx
  
 REM Download and install 7zip:
